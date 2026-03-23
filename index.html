@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>水素原子AR（記号強化版）</title>
+<title>水素原子AR（3D版）</title>
 
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
@@ -36,6 +36,10 @@ device-orientation-permission-ui="enabled: false">
 
 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
+<!-- ===== ライト追加（重要） ===== -->
+<a-light type="directional" position="1 2 1" intensity="1"></a-light>
+<a-light type="ambient" intensity="0.4"></a-light>
+
 <!-- ===== マーカー検出 ===== -->
 <a-entity mindar-image-target="targetIndex: 0">
 
@@ -49,38 +53,37 @@ device-orientation-permission-ui="enabled: false">
                 material="emissive:#ff0000; emissiveIntensity:0.7">
       </a-sphere>
 
-      <!-- ＋（太線） -->
-      <a-entity look-at="[camera]" position="0 0 0.07">
-
-  <!-- 横 -->
-  <a-box width="0.06" height="0.015" depth="0.01" color="black"></a-box>
-
-  <!-- 縦 -->
-  <a-box width="0.015" height="0.06" depth="0.01" color="black"></a-box>
-
-</a-entity>
+      <!-- 立体＋ -->
+      <a-entity position="0 0 0.06">
+        <a-box width="0.06" height="0.015" depth="0.015" color="black"></a-box>
+        <a-box width="0.015" height="0.06" depth="0.015" color="black"></a-box>
+      </a-entity>
 
     </a-entity>
 
-    <!-- ===== 電子雲 ===== -->
+    <!-- ===== 電子雲（少し歪ませる） ===== -->
     <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
 
       <a-sphere radius="0.5"
+                scale="1 0.8 1"
                 color="#66ccff"
                 material="wireframe:true; opacity:0.15">
       </a-sphere>
 
-      <a-sphere radius="0.5"
+      <a-sphere radius="0.45"
+                scale="1 0.7 1"
                 color="#99ccff"
                 opacity="0.08">
       </a-sphere>
 
-      <a-sphere radius="0.42"
+      <a-sphere radius="0.35"
+                scale="1 0.75 1"
                 color="#66aaff"
                 opacity="0.15">
       </a-sphere>
 
-      <a-sphere radius="0.3"
+      <a-sphere radius="0.25"
+                scale="1 0.7 1"
                 color="#3399ff"
                 opacity="0.25">
       </a-sphere>
@@ -95,12 +98,11 @@ device-orientation-permission-ui="enabled: false">
                 material="emissive:#4da6ff; emissiveIntensity:1.2">
       </a-sphere>
 
-      <!-- −（太線） -->
-     <a-entity look-at="[camera]" position="0 0 0.05">
-
-  <a-box width="0.035" height="0.01" depth="0.01" color="black"></a-box>
-
-</a-entity>
+      <!-- 立体− -->
+      <a-box position="0 0 0.04"
+             width="0.035" height="0.01" depth="0.015"
+             color="black">
+      </a-box>
 
     </a-entity>
 
@@ -120,8 +122,9 @@ document.querySelector("#startBtn").onclick = () => {
 // ===== 基準半径 =====
 let baseR = 0.5;
 
-// ===== 電子の動き =====
+// ===== 電子の3D運動 =====
 let angle = Math.random()*Math.PI*2;
+let tilt = 0.6; // 軌道の傾き
 
 setInterval(()=>{
 
@@ -129,15 +132,18 @@ setInterval(()=>{
 
   angle += 0.035;
 
-  let y = 0.15*Math.sin(angle*2);
+  let x = r * Math.cos(angle);
+  let z = r * Math.sin(angle) * Math.cos(tilt);
+  let y = r * Math.sin(angle) * Math.sin(tilt);
+
+  // ランダム揺らぎ
+  x += (Math.random()-0.5)*0.01;
+  y += (Math.random()-0.5)*0.01;
+  z += (Math.random()-0.5)*0.01;
 
   let e = document.querySelector("#electron");
 
-  e.setAttribute("position",{
-    x: r * Math.cos(angle),
-    y: y,
-    z: r * Math.sin(angle)
-  });
+  e.setAttribute("position",{x,y,z});
 
 },30);
 
