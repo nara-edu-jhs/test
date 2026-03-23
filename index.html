@@ -61,30 +61,40 @@ device-orientation-permission-ui="enabled: false">
 
     </a-entity>
 
-    <!-- ===== 電子雲（濃淡・完全な球） ===== -->
-    <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 40000">
+   <!-- ===== 電子雲（強調版） ===== -->
+<a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 40000">
 
-      <a-sphere radius="0.5"
-                color="#66ccff"
-                material="transparent:true; opacity:0.05">
-      </a-sphere>
+  <!-- 外側（かなり薄い） -->
+  <a-sphere radius="0.5"
+            color="#66ccff"
+            material="transparent:true; opacity:0.03">
+  </a-sphere>
 
-      <a-sphere radius="0.4"
-                color="#66ccff"
-                material="transparent:true; opacity:0.08">
-      </a-sphere>
+  <!-- 中間 -->
+  <a-sphere radius="0.42"
+            color="#66ccff"
+            material="transparent:true; opacity:0.08">
+  </a-sphere>
 
-      <a-sphere radius="0.3"
-                color="#3399ff"
-                material="transparent:true; opacity:0.15">
-      </a-sphere>
+  <!-- 濃いゾーン -->
+  <a-sphere radius="0.32"
+            color="#3399ff"
+            material="transparent:true; opacity:0.25">
+  </a-sphere>
 
-      <a-sphere radius="0.2"
-                color="#0066ff"
-                material="transparent:true; opacity:0.25">
-      </a-sphere>
+  <!-- かなり濃い -->
+  <a-sphere radius="0.24"
+            color="#0066ff"
+            material="transparent:true; opacity:0.45">
+  </a-sphere>
 
-    </a-entity>
+  <!-- コア（ほぼ見えるレベル） -->
+  <a-sphere radius="0.16"
+            color="#0033cc"
+            material="transparent:true; opacity:0.7">
+  </a-sphere>
+
+</a-entity>
 
     <!-- ===== 電子 ===== -->
     <a-entity id="electron">
