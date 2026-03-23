@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>水素原子AR（最終版）</title>
+<title>水素原子AR（拡張スケール版）</title>
 
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
@@ -41,45 +41,45 @@ device-orientation-permission-ui="enabled: false">
 
   <!-- ===== 原子核 ===== -->
   <a-sphere position="0 0 0"
-          radius="0.1"
-          color="#ff4d4d"
-          material="emissive:#ff0000; emissiveIntensity:0.7">
-</a-sphere>
-
-  <!-- ===== 電子雲 ===== -->
-<a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
-
-  <a-sphere radius="1.0"
-            color="#66ccff"
-            material="wireframe:true; opacity:0.15">
-  </a-sphere>
-  
-  <!-- 外側 -->
-  <a-sphere radius="1.0"
-            color="#99ccff"
-            opacity="0.08">
+            radius="0.05"
+            color="#ff4d4d"
+            material="emissive:#ff0000; emissiveIntensity:0.7">
   </a-sphere>
 
-  <!-- 中間 -->
-  <a-sphere radius="0.7"
-            color="#66aaff"
-            opacity="0.15">
-  </a-sphere>
+  <!-- ===== 電子雲（スケール統一） ===== -->
+  <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
 
-  <!-- 内側 -->
-  <a-sphere radius="0.4"
-            color="#3399ff"
-            opacity="0.25">
-  </a-sphere>
+    <!-- 外側 -->
+    <a-sphere radius="0.5"
+              color="#66ccff"
+              material="wireframe:true; opacity:0.15">
+    </a-sphere>
 
-</a-entity>
+    <a-sphere radius="0.5"
+              color="#99ccff"
+              opacity="0.08">
+    </a-sphere>
+
+    <!-- 中間 -->
+    <a-sphere radius="0.42"
+              color="#66aaff"
+              opacity="0.15">
+    </a-sphere>
+
+    <!-- 内側 -->
+    <a-sphere radius="0.3"
+              color="#3399ff"
+              opacity="0.25">
+    </a-sphere>
+
+  </a-entity>
 
   <!-- ===== 電子（1個） ===== -->
- <a-sphere id="electron"
-          radius="0.05"
-          color="#ffff00"
-          material="emissive:#ffff00; emissiveIntensity:1.2">
-</a-sphere>
+  <a-sphere id="electron"
+            radius="0.03"
+            color="#ffff00"
+            material="emissive:#ffff00; emissiveIntensity:1.2">
+  </a-sphere>
 
 </a-entity>
 
@@ -87,24 +87,27 @@ device-orientation-permission-ui="enabled: false">
 
 <script>
 
-// AR開始
+// ===== AR開始 =====
 document.querySelector("#startBtn").onclick = () => {
   document.querySelector("a-scene").components["mindar-image-system"].start();
 };
 
-// ===== 電子の動き（回転＋ゆらぎ） =====
+// ===== 基準半径（ここを変えるだけで周期対応） =====
+let baseR = 0.5;  // ← 第1周期（H）
+
+// ===== 電子の動き =====
 let angle = Math.random()*Math.PI*2;
 
 setInterval(()=>{
 
-  // 半径をゆらす（雲っぽさ）
-  let r = 0.6 + 0.15*Math.sin(Date.now()*0.002);
+  // 半径をゆらす（電子雲っぽさ）
+  let r = baseR + 0.1*Math.sin(Date.now()*0.002);
 
   // 回転
   angle += 0.035;
 
   // 上下のゆらぎ（立体感）
-  let y = 0.25*Math.sin(angle*2);
+  let y = 0.15*Math.sin(angle*2);
 
   document.querySelector("#electron").setAttribute("position",{
     x: r * Math.cos(angle),
