@@ -39,14 +39,25 @@ device-orientation-permission-ui="enabled: false">
 <!-- マーカー検出 -->
 <a-entity mindar-image-target="targetIndex: 0">
 
-  <!-- 原子核 -->
-  <a-sphere position="0 0 0" radius="0.2" color="red"></a-sphere>
+ <!-- 原子核 -->
+<a-sphere position="0 0 0"
+          radius="0.25"
+          color="#ff4d4d"
+          material="emissive:#ff0000; emissiveIntensity:0.6">
+</a-sphere>
 
-  <!-- 電子 -->
-  <a-sphere id="electron" position="0.7 0 0" radius="0.08" color="blue"></a-sphere>
+<!-- 電子（ぼんやり） -->
+<a-sphere id="electron"
+          radius="0.1"
+          color="#4da6ff"
+          opacity="0.7">
+</a-sphere>
 
-  <!-- 軌道（リング） -->
-  <a-torus radius="0.7" radius-tubular="0.01" rotation="90 0 0" color="#aaa"></a-torus>
+<!-- 電子雲（メイン） -->
+<a-sphere radius="0.9"
+          color="#99ccff"
+          opacity="0.12">
+</a-sphere>
 
 </a-entity>
 
