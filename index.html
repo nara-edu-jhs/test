@@ -47,13 +47,27 @@ device-orientation-permission-ui="enabled: false">
 </a-sphere>
 
   <!-- ===== 電子雲 ===== -->
-  <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
+<a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
 
-    <a-sphere radius="1.1" color="#99ccff" opacity="0.03"></a-sphere>
-    <a-sphere radius="0.8" color="#66aaff" opacity="0.06"></a-sphere>
-    <a-sphere radius="0.5" color="#3399ff" opacity="0.1"></a-sphere>
+  <!-- 外側（ほぼ見えない） -->
+  <a-sphere radius="1.0"
+            color="#99ccff"
+            opacity="0.02">
+  </a-sphere>
 
-  </a-entity>
+  <!-- 中間 -->
+  <a-sphere radius="0.7"
+            color="#66aaff"
+            opacity="0.05">
+  </a-sphere>
+
+  <!-- 中心付近（少し濃い） -->
+  <a-sphere radius="0.4"
+            color="#3399ff"
+            opacity="0.1">
+  </a-sphere>
+
+</a-entity>
 
   <!-- ===== 電子（1個） ===== -->
  <a-sphere id="electron"
