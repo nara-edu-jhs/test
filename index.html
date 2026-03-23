@@ -62,40 +62,40 @@ device-orientation-permission-ui="enabled: false">
     </a-entity>
 
   <!-- ===== 電子雲（超強調版） ===== -->
+<!-- ===== 電子雲（輪郭強調版） ===== -->
 <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 40000">
+
+  <!-- ★外側の輪郭（超重要） -->
+  <a-sphere radius="0.52"
+            color="#66ccff"
+            material="transparent:true; opacity:0.35; emissive:#3399ff; emissiveIntensity:0.6">
+  </a-sphere>
 
   <!-- 外側 -->
   <a-sphere radius="0.5"
             color="#66ccff"
-            material="transparent:true; opacity:0.2; emissive:#3399ff; emissiveIntensity:0.3">
+            material="transparent:true; opacity:0.15">
   </a-sphere>
 
   <!-- 中間 -->
-  <a-sphere radius="0.42"
+  <a-sphere radius="0.4"
             color="#3399ff"
-            material="transparent:true; opacity:0.35; emissive:#3399ff; emissiveIntensity:0.5">
+            material="transparent:true; opacity:0.35">
   </a-sphere>
 
-  <!-- 濃い -->
-  <a-sphere radius="0.32"
+  <!-- 内側 -->
+  <a-sphere radius="0.3"
             color="#0066ff"
-            material="transparent:true; opacity:0.55; emissive:#0066ff; emissiveIntensity:0.7">
+            material="transparent:true; opacity:0.6">
   </a-sphere>
 
-  <!-- かなり濃い -->
-  <a-sphere radius="0.24"
+  <!-- 中心 -->
+  <a-sphere radius="0.2"
             color="#0033cc"
-            material="transparent:true; opacity:0.75; emissive:#0033cc; emissiveIntensity:0.9">
-  </a-sphere>
-
-  <!-- 中心（はっきり見える） -->
-  <a-sphere radius="0.16"
-            color="#001a99"
-            material="transparent:true; opacity:0.95; emissive:#001a99; emissiveIntensity:1.2">
+            material="transparent:true; opacity:0.85">
   </a-sphere>
 
 </a-entity>
-
     <!-- ===== 電子 ===== -->
     <a-entity id="electron">
 
