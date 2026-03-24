@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>水素原子AR（最終整理版）</title>
+<title>水素原子AR（GLB版）</title>
 
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
@@ -44,13 +44,13 @@ device-orientation-permission-ui="enabled: false">
 
   <a-entity id="atom" scale="0.6 0.6 0.6">
 
-    <!-- 原子核 -->
+    <!-- ===== 原子核（GLB） ===== -->
     <a-entity position="0 0 0">
 
-      <a-sphere radius="0.05"
-                color="#ff4d4d"
-                material="emissive:#ff0000; emissiveIntensity:0.7">
-      </a-sphere>
+      <a-entity 
+        gltf-model="models/nucleus.glb"
+        scale="0.08 0.08 0.08">
+      </a-entity>
 
       <!-- ＋ -->
       <a-entity position="0 0 0.06">
@@ -60,7 +60,7 @@ device-orientation-permission-ui="enabled: false">
 
     </a-entity>
 
-    <!-- 電子雲 -->
+    <!-- ===== 電子雲 ===== -->
     <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 40000">
 
       <a-sphere radius="0.52"
@@ -90,13 +90,13 @@ device-orientation-permission-ui="enabled: false">
 
     </a-entity>
 
-    <!-- 電子 -->
+    <!-- ===== 電子（GLB） ===== -->
     <a-entity id="electron">
 
-      <a-sphere radius="0.03"
-                color="#4da6ff"
-                material="emissive:#4da6ff; emissiveIntensity:1.2">
-      </a-sphere>
+      <a-entity 
+        gltf-model="models/electron.glb"
+        scale="0.04 0.04 0.04">
+      </a-entity>
 
       <!-- − -->
       <a-box position="0 0 0.04"
